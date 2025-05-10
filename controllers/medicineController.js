@@ -23,14 +23,14 @@ exports.getMedicineById = async (req, res) => {
 };
 
 exports.createMedicine = async (req, res) => {
-  const { medicineName } = req.body;
-  if (!medicineName) {
+  const { name } = req.body;
+  if (!name) {
     return res
       .status(400)
       .json({ error: "El nombre del medicamento es requerido" });
   }
   try {
-    const newMedicine = await Medicine.create({ medicineName });
+    const newMedicine = await Medicine.create({ medicineName: name });
     res.status(201).json(newMedicine);
   } catch (error) {
     console.error("Error al crear el medicamento:", error);
